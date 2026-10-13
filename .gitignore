@@ -1,0 +1,42 @@
+# Temporary credentials and local site config
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+config/site.local.yaml
+config/site.local.yml
+**/secrets/
+*.pem
+*.key
+*.agekey
+*.vault-pass
+id_rsa
+id_ed25519
+wg0.conf
+
+# Terraform: commit .terraform.lock.hcl once providers exist!
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfstate.lock.info
+crash.log
+crash.*.log
+
+# Runtime/session material
+.runtime/
+.session/
+*.retry
+.scaffold-proposals/
+
+# Tools
+.ci-venv/
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+*.swp
+*.tmp

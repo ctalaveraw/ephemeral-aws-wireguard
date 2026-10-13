@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ephemeral AWS WireGuard site parameters (NONSECRET)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["project", "aws", "ssh", "home", "session"],
+  "properties": {
+    "project": {"const": "ephemeral-aws-wireguard"},
+    "aws": {
+      "type": "object", "additionalProperties": false,
+      "required": ["expected_account_id", "region", "instance_type"],
+      "properties": {
+        "expected_account_id": {"type": "string", "pattern": "^[0-9]{12}$"},
+        "region": {"type": "string", "pattern": "^[a-z]{2}-[a-z]+-[0-9]$"},
+        "instance_type": {"enum": ["t4g.nano", "t4g.micro"]}
+      }
+    },
+    "ssh": {
+      "type": "object", "additionalProperties": false, "required": ["operator_cidr"],
+      "properties": {"operator_cidr": {"type": "string", "minLength": 3}}
+    },
+    "home": {
+      "type": "object", "additionalProperties": false,
+      "required": ["endpoint", "wireguard_udp_port", "vpn_bastion_address", "route_cidrs", "allowed_ssh_targets"],
+      "properties": {
+        "endpoint": {"type": "string", "minLength": 4},
+        "wireguard_udp_port": {"type": "integer", "minimum": 1, "maximum": 65535},
+        "vpn_bastion_address": {"type": "string", "minLength": 4},
+        "route_cidrs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+        "allowed_ssh_targets": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}}
+      }
+    },
+    "session": {
+      "type": "object", "additionalProperties": false,
+      "required": ["max_hours"],
+      "properties": {"max_hours": {"type": "integer", "minimum": 1, "maximum": 24}}
+    }
+  }
+}

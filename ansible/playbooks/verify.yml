@@ -1,0 +1,9 @@
+---
+# Future sprint implementation. Refuses execution until accepted.
+- name: Unimplemented verify.yml guard
+  hosts: aws_bastion
+  gather_facts: false
+  tasks:
+    - name: Refuse incomplete deployment
+      ansible.builtin.fail:
+        msg: "verify.yml is a Sprint 03+ placeholder; not implemented"

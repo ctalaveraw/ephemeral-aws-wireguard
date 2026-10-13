@@ -1,0 +1,33 @@
+---
+name: Ephemeral Bastion - Portable CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - name: Checkout reviewed source
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - name: Install pinned Terraform CLI
+        uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_version: '1.14.6'
+          terraform_wrapper: false
+
+      - name: Bootstrap portable CI tools
+        run: bash scripts/ci/bootstrap.sh
+
+      - name: Validate repository (no AWS credentials)
+        run: bash scripts/ci/validate.sh

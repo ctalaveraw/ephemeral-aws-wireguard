@@ -1,0 +1,9 @@
+---
+# Future sprint implementation. Refuses execution until accepted.
+- name: Unimplemented home-peer.yml guard
+  hosts: home_gateway
+  gather_facts: false
+  tasks:
+    - name: Refuse incomplete deployment
+      ansible.builtin.fail:
+        msg: "home-peer.yml is a Sprint 03+ placeholder; not implemented"

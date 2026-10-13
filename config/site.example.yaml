@@ -1,0 +1,19 @@
+---
+# Safe example only; impossible account / reserved docs addresses.
+project: ephemeral-aws-wireguard
+aws:
+  expected_account_id: '000000000000'
+  region: us-east-1
+  instance_type: t4g.nano
+ssh:
+  operator_cidr: 203.0.113.10/32
+home:
+  endpoint: vpn.example.invalid
+  wireguard_udp_port: 51820
+  vpn_bastion_address: 10.250.250.2/32
+  route_cidrs:
+    - 10.0.0.0/24
+  allowed_ssh_targets:
+    - 10.0.0.50/32
+session:
+  max_hours: 4
