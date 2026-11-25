@@ -1,0 +1,8 @@
+# Copy to terraform.tfvars (ignored by Git) and fill in REAL values.
+# NEVER commit terraform.tfvars or paste AWS credentials/private keys here.
+expected_account_id     = "000000000000"
+aws_region              = "us-east-1"
+instance_type           = "t4g.nano"
+operator_ssh_cidr       = "203.0.113.10/32"
+operator_ssh_public_key = "ssh-ed25519 REPLACE_WITH_YOUR_PUBLIC_KEY"
+session_id              = "mvp01"

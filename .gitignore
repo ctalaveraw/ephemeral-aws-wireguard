@@ -16,12 +16,14 @@ id_rsa
 id_ed25519
 wg0.conf
 
-# Terraform: commit .terraform.lock.hcl once providers exist!
+# Terraform: COMMIT .terraform.lock.hcl once providers exist!
 **/.terraform/
 *.tfstate
 *.tfstate.*
 *.tfplan
 *.tfstate.lock.info
+*.tfvars
+*.auto.tfvars
 crash.log
 crash.*.log
 
