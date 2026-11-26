@@ -11,6 +11,6 @@ Branch: `feat/mvp-ec2-ssh`. Run commands from `infrastructure/terraform` on the 
 - [ ] Destroy from the same checkout. Verify empty Terraform state and independently check session resources in AWS. Record residuals or confirmed cleanup and cost evidence.
 - [ ] Align .terraform-version and CI CLI pin with 1.17.2 and verify CI.
 
-Latest operator evidence: recovery apply succeeded. SSH to the public IPv4 timed out before authentication. Compare the workstation egress address with the live TCP/22 ingress rule. The session is live and teardown remains pending. If the thread changes, refresh branch HEAD, read this checklist, and ask whether an apply or destroy happened after the checkpoint before issuing a mutating command.
+Latest operator evidence: recovery teardown finished with 7 destroyed, including the internet gateway and VPC. Independent AWS residual checks and empty local state are pending. SSH access was not verified in this session. If the thread changes, refresh branch HEAD, read this checklist, and ask whether an apply or destroy happened after the checkpoint before issuing a mutating command.
 
 Keep this milestone SSH-only. WireGuard to the home target and independent expiry are later milestones. The operator owns manual teardown during this run. Never attach private keys, raw state, or saved plan files to the handoff.
