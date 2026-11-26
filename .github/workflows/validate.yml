@@ -23,7 +23,7 @@ jobs:
       - name: Install pinned Terraform CLI
         uses: hashicorp/setup-terraform@v4
         with:
-          terraform_version: '1.16.5'
+          terraform_version: '1.17.5'
           terraform_wrapper: false
 
       - name: Bootstrap portable CI tools
