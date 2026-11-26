@@ -13,6 +13,15 @@ data "aws_ssm_parameter" "al2023" {
   name = "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-arm64"
 }
 
+data "aws_ec2_instance_type_offerings" "bastion" {
+  location_type = "availability-zone"
+
+  filter {
+    name   = "instance-type"
+    values = [var.instance_type]
+  }
+}
+
 resource "aws_vpc" "mvp" {
   cidr_block           = "10.252.0.0/16"
   enable_dns_support   = true
@@ -24,6 +33,7 @@ resource "aws_vpc" "mvp" {
 resource "aws_subnet" "public" {
   vpc_id                  = aws_vpc.mvp.id
   cidr_block              = "10.252.1.0/24"
+  availability_zone       = sort(data.aws_ec2_instance_type_offerings.bastion.locations)[0]
   map_public_ip_on_launch = false
 
   tags = { Name = "${local.name}-public-subnet" }
