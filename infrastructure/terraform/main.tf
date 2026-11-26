@@ -31,8 +31,10 @@ resource "aws_vpc" "mvp" {
 }
 
 resource "aws_subnet" "public" {
-  vpc_id                  = aws_vpc.mvp.id
-  cidr_block              = "10.252.1.0/24"
+  vpc_id     = aws_vpc.mvp.id
+  cidr_block = "10.252.1.0/24"
+  # The subnet fixes the bastion's AZ, so choose a zone that offers its instance type.
+  # Any eligible zone is acceptable for this disposable session; alphabetical order breaks the tie.
   availability_zone       = sort(data.aws_ec2_instance_type_offerings.bastion.locations)[0]
   map_public_ip_on_launch = false
 
